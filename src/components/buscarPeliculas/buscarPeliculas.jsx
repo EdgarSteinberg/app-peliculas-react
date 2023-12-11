@@ -46,16 +46,7 @@ const BuscadorPeliculas = () => {
 
                 <div>
                 <BuscarPeliculasList peliculas={peliculas} />
-                {/*     {peliculas.map((pelicula) => (
-                      
-                        <div key={pelicula.id}>
-                            
-                            <img className={styles.img} src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} alt={pelicula.title} />
 
-                            <h2>{pelicula.title}</h2>
-                            <p>{pelicula.overview}</p>
-                        </div>
-                    ))} */}
                 </div>
             </div>
         </>
