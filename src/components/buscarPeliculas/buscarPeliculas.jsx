@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './styles.module.css'
 import Button from 'react-bootstrap/Button';
 import BuscarPeliculasList from '../buscarPeliculasList/buscarPeliculasList';
@@ -17,19 +17,29 @@ const BuscadorPeliculas = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetchPeliculas()
+        //fetchPeliculas()
     }
 
-    const fetchPeliculas = async () => {
-        try {
-            const response = await fetch(`${urlBase}?query=${busqueda}&api_key=${API_KEY}`)
-            const data = await response.json()
-            console.log(data.results)
-            setPeliculas(data.results)
-        }catch(error){
-            console.error('Ha ocurrido un error ', error)
-        }
-    }
+    // const fetchPeliculas = async () => {
+    //     try {
+    //         const response = await fetch(`${urlBase}?query=${busqueda}&api_key=${API_KEY}`)
+    //         const data = await response.json()
+    //         console.log(data.results)
+    //         setPeliculas(data.results)
+    //     }catch(error){
+    //         console.error('Ha ocurrido un error ', error)
+    //     }
+    // }
+
+    useEffect(() => {
+        fetch(`${urlBase}?query=${busqueda}&api_key=${API_KEY}`)
+        .then(res => res.json())
+        .then(json => {
+            console.log(json.results)
+            setPeliculas(json.results)
+        })
+        .catch(error => console.error(error))
+    }, [busqueda])
     return (
         <>
             <div className='container'>
